@@ -26,7 +26,7 @@ class BarraBusca extends React.Component {
         return (
             <>
                 <form className="formBusca" onSubmit={this.onFormSubmit}>
-                    <input className="campoBusca" type="text" placeholder="Nome do Artista" onChange={(e) => this.atualizarInput(e)} />
+                    <input className="campoBusca" type="text" placeholder="Artista" onChange={(e) => this.atualizarInput(e)} />
                     <div className="botaoBuscar" onClick={this.onFormSubmit}>
                         <SearchIcon className="iconeBusca"/>
                     </div>

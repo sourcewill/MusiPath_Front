@@ -48,7 +48,7 @@ export default class VisReact extends React.Component {
 					borderWidth: 1,
 					shadow: true,
 					font: {
-						size: 20,
+						size: 16,
 						align: "center",
 						color: "white",
 					}

@@ -18,6 +18,7 @@ class Player extends React.Component {
         this.getCurrentTime = this.getCurrentTime.bind(this)
         this.playPause = this.playPause.bind(this)
         this.volumeOnOff = this.volumeOnOff.bind(this)
+        this.onKeyPress = this.onKeyPress.bind(this)
 
         this.state = {
             player: null,
@@ -25,13 +26,35 @@ class Player extends React.Component {
             time: 0,
             playing: true,
             volume: 80,
-            volumeAnterior : 80
+            volumeAnterior: 80
         }
 
     }
 
+    componentDidMount() {
+        window.addEventListener('keypress', this.onKeyPress);
+    }
+
     componentWillUnmount() {
+        window.removeEventListener('keypress', this.onKeyPress);
         clearInterval(this.interval);
+    }
+
+    onKeyPress(event) {
+        switch (event.code) {
+            case 'Space':
+                if (event.target === document.body) {
+                    event.preventDefault();
+                    this.playPause()
+                }
+                break;
+            case 'KeyM':
+                this.volumeOnOff()
+                break;
+            default:
+                break;
+        }
+
     }
 
     getVideoId() {
@@ -134,11 +157,11 @@ class Player extends React.Component {
         }
     }
 
-    volumeOnOff(){
-        if(this.state.volume > 0){
-            this.setState({volumeAnterior: this.state.volume})
+    volumeOnOff() {
+        if (this.state.volume > 0) {
+            this.setState({ volumeAnterior: this.state.volume })
             this.setPlayerVolume(0)
-        }else{
+        } else {
             this.setPlayerVolume(this.state.volumeAnterior)
         }
     }
