@@ -1,0 +1,131 @@
+.artista{
+    height: 50vh;
+    user-select: none;
+}
+
+.artista--vertical--top{
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(to bottom, #202123 10%, transparent 70%);
+}
+
+.artista--vertical--bottom{
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(to top, #202123 10%, transparent 70%);
+}
+
+.artista--horizontal{
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(to right, #202123 1%, transparent 50%);
+}
+
+.artista--nome{
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.artista--tags{
+    margin-top: 5px;
+}
+
+.artista--tag{
+    font-size: 15px;
+    display: inline-block;
+    margin: 3px;
+    padding: 5px;
+    background-color: #151517;
+    opacity: 0.5;
+    border-radius: 5px;
+    transition: all ease 0.2s;
+    cursor: default;
+}
+
+.artista--tag:hover{
+    opacity: 1;
+}
+
+
+
+.albumRow{
+    text-align: initial;
+}
+
+.albumRow h2{
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.albumRow--listarea{
+    overflow-x: hidden;
+    padding-left: 30px;
+
+}
+
+.albumRow--list{
+    transition: all ease 0.5s;
+}
+
+.albumRow--item{
+    display: inline-block;
+    width: 150px;
+}
+
+.albumRow--item img{
+    width: 100%;
+    transform: scale(0.9);
+    transition: all ease 0.2s;
+    cursor: pointer;
+}
+
+.albumRow--item img:hover{
+    transform: scale(1);
+}
+
+.albumRow--left,
+.albumRow--right{
+    position: absolute;
+    width: 40px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transition: all ease 0.5s;
+}
+
+.albumRow--left{
+    left: 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.albumRow--left:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.albumRow--left:hover .left--icon{
+    transform: scale(1.2);
+}
+
+.albumRow--right{
+    right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+.albumRow--right:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.albumRow--right:hover .right--icon{
+    transform: scale(1.2);
+}
+
+.albumRow:hover .albumRow--left,
+.albumRow:hover .albumRow--right{
+    opacity: 1;
+}

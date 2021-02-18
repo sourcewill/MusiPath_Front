@@ -1,0 +1,36 @@
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+.formBusca{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 35px;
+}
+
+.campoBusca {
+    height: 100%;
+    width: 50%;
+    border-style:none;
+    border-radius: 5px 0px 0px 5px;
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+.botaoBuscar {
+    height: 100%;
+    width: 15%;
+    border-style:none;
+    border-radius: 0px 5px 5px 0px;
+    background: #BA0000;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    transition: all ease 0.2s;
+}
+
+.botaoBuscar:hover{
+    background: #cf0101;
+}

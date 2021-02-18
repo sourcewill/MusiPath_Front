@@ -1,0 +1,146 @@
+{
+    "listaDeNos": [
+      {
+        "id": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+        "nome": "Muse"
+      },
+      {
+        "id": "906cbb69-b793-463a-832d-b5bf850f01a2",
+        "nome": "Athlete"
+      },
+      {
+        "id": "cc197bad-dc9c-440d-a5b5-d52ba2e14234",
+        "nome": "Coldplay"
+      },
+      {
+        "id": "960607c6-b0e3-483d-be67-8232eb50eb95",
+        "nome": "Travis"
+      },
+      {
+        "id": "c7020c6d-cae9-4db3-92a7-e5c561cbad50",
+        "nome": "Keane"
+      },
+      {
+        "id": "a66999a7-ae5c-460e-ba94-1a01143ae847",
+        "nome": "Snow Patrol"
+      },
+      {
+        "id": "012151a8-0f9a-44c9-997f-ebd68b5389f9",
+        "nome": "Imagine Dragons"
+      },
+      {
+        "id": "c33c2065-b1c3-4406-b066-d33a9e2ea71a",
+        "nome": "OneRepublic"
+      },
+      {
+        "id": "0bfba3d3-6a04-4779-bb0a-df07df5b0558",
+        "nome": "Stereophonics"
+      },
+      {
+        "id": "c860af48-e9c1-49cd-b441-8d18e9f522f2",
+        "nome": "Thirteen Senses"
+      },
+      {
+        "id": "2ddd167f-5b8a-4372-b350-6ad50493bac0",
+        "nome": "The Fray"
+      }
+    ],
+    "listaDeArestas": [
+      {
+        "de": "906cbb69-b793-463a-832d-b5bf850f01a2",
+        "para": "960607c6-b0e3-483d-be67-8232eb50eb95"
+      },
+      {
+        "de": "c860af48-e9c1-49cd-b441-8d18e9f522f2",
+        "para": "960607c6-b0e3-483d-be67-8232eb50eb95"
+      },
+      {
+        "de": "960607c6-b0e3-483d-be67-8232eb50eb95",
+        "para": "906cbb69-b793-463a-832d-b5bf850f01a2"
+      },
+      {
+        "de": "906cbb69-b793-463a-832d-b5bf850f01a2",
+        "para": "c860af48-e9c1-49cd-b441-8d18e9f522f2"
+      },
+      {
+        "de": "c860af48-e9c1-49cd-b441-8d18e9f522f2",
+        "para": "c7020c6d-cae9-4db3-92a7-e5c561cbad50"
+      },
+      {
+        "de": "c7020c6d-cae9-4db3-92a7-e5c561cbad50",
+        "para": "906cbb69-b793-463a-832d-b5bf850f01a2"
+      },
+      {
+        "de": "c7020c6d-cae9-4db3-92a7-e5c561cbad50",
+        "para": "cc197bad-dc9c-440d-a5b5-d52ba2e14234"
+      },
+      {
+        "de": "cc197bad-dc9c-440d-a5b5-d52ba2e14234",
+        "para": "c33c2065-b1c3-4406-b066-d33a9e2ea71a"
+      },
+      {
+        "de": "c860af48-e9c1-49cd-b441-8d18e9f522f2",
+        "para": "906cbb69-b793-463a-832d-b5bf850f01a2"
+      },
+      {
+        "de": "cc197bad-dc9c-440d-a5b5-d52ba2e14234",
+        "para": "012151a8-0f9a-44c9-997f-ebd68b5389f9"
+      },
+      {
+        "de": "960607c6-b0e3-483d-be67-8232eb50eb95",
+        "para": "c7020c6d-cae9-4db3-92a7-e5c561cbad50"
+      },
+      {
+        "de": "cc197bad-dc9c-440d-a5b5-d52ba2e14234",
+        "para": "fd857293-5ab8-40de-b29e-55a69d4e4d0f"
+      },
+      {
+        "de": "c7020c6d-cae9-4db3-92a7-e5c561cbad50",
+        "para": "a66999a7-ae5c-460e-ba94-1a01143ae847"
+      },
+      {
+        "de": "a66999a7-ae5c-460e-ba94-1a01143ae847",
+        "para": "906cbb69-b793-463a-832d-b5bf850f01a2"
+      },
+      {
+        "de": "a66999a7-ae5c-460e-ba94-1a01143ae847",
+        "para": "960607c6-b0e3-483d-be67-8232eb50eb95"
+      },
+      {
+        "de": "c7020c6d-cae9-4db3-92a7-e5c561cbad50",
+        "para": "c860af48-e9c1-49cd-b441-8d18e9f522f2"
+      },
+      {
+        "de": "960607c6-b0e3-483d-be67-8232eb50eb95",
+        "para": "0bfba3d3-6a04-4779-bb0a-df07df5b0558"
+      },
+      {
+        "de": "a66999a7-ae5c-460e-ba94-1a01143ae847",
+        "para": "c7020c6d-cae9-4db3-92a7-e5c561cbad50"
+      },
+      {
+        "de": "cc197bad-dc9c-440d-a5b5-d52ba2e14234",
+        "para": "a66999a7-ae5c-460e-ba94-1a01143ae847"
+      },
+      {
+        "de": "0bfba3d3-6a04-4779-bb0a-df07df5b0558",
+        "para": "960607c6-b0e3-483d-be67-8232eb50eb95"
+      },
+      {
+        "de": "c7020c6d-cae9-4db3-92a7-e5c561cbad50",
+        "para": "960607c6-b0e3-483d-be67-8232eb50eb95"
+      },
+      {
+        "de": "cc197bad-dc9c-440d-a5b5-d52ba2e14234",
+        "para": "c7020c6d-cae9-4db3-92a7-e5c561cbad50"
+      },
+      {
+        "de": "a66999a7-ae5c-460e-ba94-1a01143ae847",
+        "para": "2ddd167f-5b8a-4372-b350-6ad50493bac0"
+      },
+      {
+        "de": "a66999a7-ae5c-460e-ba94-1a01143ae847",
+        "para": "0bfba3d3-6a04-4779-bb0a-df07df5b0558"
+      }
+    ]
+  }

@@ -1,0 +1,146 @@
+.player{
+    background: rgba(21, 21, 23, 1);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0px 0px 0 0;
+    z-index: 998;
+    transition: all ease 0.5s;
+    padding: 0 30px;
+}
+
+.music--tempo{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 75px;
+    width: 100%;
+    z-index: 999;
+}
+
+.play-pause{
+    padding-top: 5px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: inline-block;
+    align-items: center;
+    overflow: hidden;
+    background: #09718A;
+    cursor: pointer;
+    justify-content: center;
+    transition: all ease 0.2s;
+    margin-right: 20px;
+}
+
+.icon--play, .icon--pause{
+    transform: scale(0.9);
+    color: white;
+    transition: all ease 0.3s;
+}
+
+.play-pause:hover .icon--play, .play-pause:hover .icon--pause{
+    transform: scale(1);
+}
+
+.play-pause:hover{
+    background: #0EBDE8;
+}
+
+.youtube{
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 50px;
+    opacity: 0;
+}
+
+
+.slider--tempo{
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.slider--volume{
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    width: 60px;
+}
+
+.slider--tempo:focus, .slider--volume:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.slider--tempo::-webkit-slider-runnable-track {
+    background: #09718A;
+    height: 4px;
+    border-radius: 0px;
+    transition: all ease 0.2s;
+}
+
+.slider--volume::-webkit-slider-runnable-track {
+    background: #09718A;
+    height: 4px;
+    border-radius: 10px;
+    transition: all ease 0.2s;
+}
+
+.slider--tempo:hover::-webkit-slider-runnable-track{
+      background: #0EBDE8;
+      height: 6px;
+}
+
+.slider--volume:hover::-webkit-slider-runnable-track{
+      background: #0EBDE8;
+      height: 6px;
+}
+
+.slider--volume::-webkit-slider-thumb {
+    height: 15px;
+    width: 15px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: white;
+    border-radius: 50%;
+    margin-top: -5px;
+}
+
+.slider--tempo::-webkit-slider-thumb {
+    height: 18px;
+    width: 18px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: white;
+    border-radius: 50%;
+    margin-top: -7px;
+}
+
+.music--name{
+      font-size: 16px;
+}
+
+.music--info{
+      display: inline-block;
+}
+
+.music--volume{
+    display: flex;
+    position: absolute;
+    right: 30px;
+}
+
+.icon--volume{
+    cursor: pointer;
+}
+
