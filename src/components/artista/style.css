@@ -31,6 +31,7 @@
 }
 
 .artista--tag{
+    text-transform: capitalize;
     font-size: 15px;
     display: inline-block;
     margin: 3px;

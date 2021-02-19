@@ -23,23 +23,15 @@ input:focus, textarea:focus, select:focus{
     width: 15%;
     border-style:none;
     border-radius: 0px 5px 5px 0px;
-    background: #BA0000;
+    background: rgb(80, 80, 80);
     color: white;
     justify-content: center;
     align-items: center;
     padding-top: 5px;
     transition: all ease 0.2s;
+    cursor: pointer;
 }
 
 .botaoBuscar:hover{
-    background: #cf0101;
-}
-
-.iconeBusca{
-    transform: scale(1);
-    transition: all ease 0.2s;
-}
-
-.botaoBuscar:hover .iconeBusca{
-    transform: scale(1.2);
+    background: rgb(130, 130, 130);
 }

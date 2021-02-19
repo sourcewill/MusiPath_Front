@@ -1,24 +1,25 @@
 .player{
-    background: rgba(21, 21, 23, 1);
+    user-select: none;
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0px;
+    transition: all ease 0.5s;
+}
+
+.player--barra{
+    background: rgba(21, 21, 23, 1);
     height: 80px;
     display: flex;
     align-items: center;
     overflow: hidden;
     border-radius: 0px 0px 0 0;
     z-index: 998;
-    transition: all ease 0.5s;
     padding: 0 30px;
 }
 
 .music--tempo{
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 75px;
+    transform: translate(-2px, 5px);
     width: 100%;
     z-index: 999;
 }
@@ -127,7 +128,7 @@
 }
 
 .music--name{
-      font-size: 16px;
+      font-size: 15px;
 }
 
 .music--info{
@@ -142,5 +143,6 @@
 
 .icon--volume{
     cursor: pointer;
+    margin-right: 3px;
 }
 

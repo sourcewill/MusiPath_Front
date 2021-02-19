@@ -1,3 +1,57 @@
+.album-background{
+    background: linear-gradient(to top, rgba(0, 4, 5, 0.8) 1%, transparent 90%);
+}
+
 .album{
+    position: relative;
+    top: -70px;
     user-select: none;
+    padding-bottom: 40px;
+}
+
+.album-nome{
+    display: flex;
+    justify-content: right;
+    padding-left: 10%;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.album-row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 50px;
+    font-size: 15px;
+    cursor: pointer;
+    padding-left: 10%;
+    transition: all ease 0.2s;
+}
+
+.album-row:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.icon-music{
+    margin-right: 10px;
+    color: #a0a0a0;
+    transition: all ease 0.8s;
+}
+
+.icon-music-selected{
+    margin-right: 10px;
+    color: #0EBDE8;
+    transition: all ease 0.8s;
+}
+
+.album-row:hover .icon-music{
+    color: #0EBDE8;
+    transform: scale(1.2);
+}
+
+.album-row:hover .icon-music-selected{
+    color: #0EBDE8;
+    transform: scale(1.2);
 }

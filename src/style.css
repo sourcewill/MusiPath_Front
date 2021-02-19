@@ -10,10 +10,21 @@ body {
   color: white;
   margin: 0px;
   padding: 0px;
+  border: 0;
   font-family: 'Roboto', sans-serif;
 }
 
 .conteudo {
-  margin-bottom: 100px;
-  margin-top: 100px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.gradiente-vertical-topo{
+  padding-top: 100px;
+  background: linear-gradient(to top, #202123 0%, transparent 300%);
+}
+
+.background-topo{
+  background-image: url('./images/background-blur.jpg');
+  background-size: cover;
 }

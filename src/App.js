@@ -23,7 +23,7 @@ class App extends React.Component {
             jsonMusica: null,
             count: 1,
             blackHeader: false,
-            welcome : true
+            welcome: true
         }
 
     }
@@ -31,16 +31,16 @@ class App extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.scrollListner);
     }
-    
+
     componentWillUnmount() {
         window.removeEventListener('scroll', this.scrollListner);
     }
 
-    scrollListner(){
-        if(window.scrollY > 10){
-            this.setState({blackHeader : true})
-        }else{
-            this.setState({blackHeader : false})
+    scrollListner() {
+        if (window.scrollY > 10) {
+            this.setState({ blackHeader: true })
+        } else {
+            this.setState({ blackHeader: false })
         }
     }
 
@@ -48,7 +48,7 @@ class App extends React.Component {
         console.log(text)
 
         this.setState({
-            jsonGrafo : null
+            jsonGrafo: null
         })
 
         const response = await APIService.getJsonGrafoArtista(text, 3)
@@ -98,16 +98,19 @@ class App extends React.Component {
     render() {
         return (
             <>
-                <Header blackHeader={this.state.blackHeader}/>
+                <Header blackHeader={this.state.blackHeader} />
                 <div className='conteudo'>
-                    <Busca onSubmit={this.onSearchSubmit} />
-                    {(this.state.welcome) && <div>BEM VINDO!</div>}
-                    {(!this.state.welcome && (this.state.jsonGrafo === null)) && <div>CARREGANDO...</div>}
-                    {(this.state.jsonGrafo !== null) && <VisReact jsonGrafo={this.state.jsonGrafo} key={this.state.count} onClickArtist={this.onClickArtist} />}
-                    {(this.state.jsonArtista !== null) && <Artista jsonArtista={this.state.jsonArtista} onClickAlbum={this.onClickAlbum} />}
-                    <div className="album">
-                        {(this.state.jsonAlbum !== null) && <Album jsonAlbum={this.state.jsonAlbum} onClickMusica={this.onClickMusica}/>}
+
+                    <div className='background-topo'>
+                        <div className='gradiente-vertical-topo'>
+                            <Busca onSubmit={this.onSearchSubmit} />
+                            {(this.state.welcome) && <div>BEM VINDO!</div>}
+                            {(!this.state.welcome && (this.state.jsonGrafo === null)) && <div>CARREGANDO...</div>}
+                            {(this.state.jsonGrafo !== null) && <VisReact jsonGrafo={this.state.jsonGrafo} key={this.state.count} onClickArtist={this.onClickArtist} />}
+                        </div>
                     </div>
+                    {(this.state.jsonArtista !== null) && <Artista jsonArtista={this.state.jsonArtista} onClickAlbum={this.onClickAlbum} />}
+                    {(this.state.jsonAlbum !== null) && <Album jsonAlbum={this.state.jsonAlbum} onClickMusica={this.onClickMusica} />}
                 </div>
                 <Player jsonMusica={this.state.jsonMusica} />
 

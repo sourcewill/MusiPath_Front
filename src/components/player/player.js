@@ -14,6 +14,7 @@ class Player extends React.Component {
         this.onPlayerReady = this.onPlayerReady.bind(this)
         this.setPlayerVolume = this.setPlayerVolume.bind(this)
         this.setPlayerTime = this.setPlayerTime.bind(this)
+        this.setTimeValue = this.setTimeValue.bind(this)
         this.onPlayerStateChange = this.onPlayerStateChange.bind(this)
         this.getCurrentTime = this.getCurrentTime.bind(this)
         this.playPause = this.playPause.bind(this)
@@ -26,11 +27,10 @@ class Player extends React.Component {
             time: 0,
             playing: true,
             volume: 80,
-            volumeAnterior: 80
+            volumeAnterior: 80,
         }
 
     }
-
     componentDidMount() {
         window.addEventListener('keypress', this.onKeyPress);
     }
@@ -41,15 +41,22 @@ class Player extends React.Component {
     }
 
     onKeyPress(event) {
-        switch (event.code) {
-            case 'Space':
+
+        if (this.state.player == null) {
+            return
+        }
+
+        switch (event.keyCode) {
+            case 32: // Space
                 if (event.target === document.body) {
                     event.preventDefault();
                     this.playPause()
                 }
                 break;
-            case 'KeyM':
-                this.volumeOnOff()
+            case 109: // M
+                if (event.target === document.body) {
+                    this.volumeOnOff()
+                }
                 break;
             default:
                 break;
@@ -135,8 +142,17 @@ class Player extends React.Component {
         this.state.player.setVolume(value)
     }
 
-    setPlayerTime(value) {
-        this.state.player.seekTo(value, true)
+    setPlayerTime() {
+        this.state.player.seekTo(this.state.time, true)
+        this.setState({ sliderTimeDragged: false })
+    }
+
+    setTimeValue(value) {
+        this.setState(
+            {
+                time: value
+            }
+        )
     }
 
     getCurrentTime() {
@@ -158,31 +174,36 @@ class Player extends React.Component {
     }
 
     volumeOnOff() {
-        if (this.state.volume > 0) {
-            this.setState({ volumeAnterior: this.state.volume })
-            this.setPlayerVolume(0)
-        } else {
-            this.setPlayerVolume(this.state.volumeAnterior)
+        if (this.state.player !== null) {
+            if (this.state.volume > 0) {
+                this.setState({ volumeAnterior: this.state.volume })
+                this.setPlayerVolume(0)
+            } else {
+                this.setPlayerVolume(this.state.volumeAnterior)
+            }
         }
     }
 
     render() {
         return (
-            <>
+            <div className='player' style={{
+                bottom: (this.state.player !== null ? '0px' : '-100px')
+
+            }}>
                 {((this.props.jsonMusica !== null) &&
                     <YouTube className='youtube' videoId={this.getVideoId()} onReady={this.onPlayerReady} onStateChange={this.onPlayerStateChange}></YouTube>
                 )}
 
                 {(this.state.sliders &&
                     <div className='music--tempo'>
-                        <input className='slider--tempo' onInput={(e) => (this.setPlayerTime(e.target.value))} type="range" min="0" max={this.state.totalTime} value={this.state.time} />
+                        <input className='slider--tempo'
+                            onInput={(e) => (this.setTimeValue(e.target.value))}
+                            onMouseUp={() => (this.setPlayerTime())}
+                            type="range" min="0" max={this.state.totalTime} value={this.state.time} />
                     </div>
                 )}
 
-                <div className='player' style={{
-                    bottom: (this.props.jsonMusica !== null ? '0px' : '-100px')
-
-                }}>
+                <div className='player--barra'>
 
                     <div className='play-pause' onClick={this.playPause}>
                         {(!this.state.playing) && <PlayArrowIcon className="icon--play" style={{ fontSize: '40px' }} />}
@@ -202,7 +223,7 @@ class Player extends React.Component {
                         <input className='slider--volume' onInput={(e) => (this.setPlayerVolume(e.target.value))} type="range" min="0" max="100" value={this.state.volume} on />
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 
