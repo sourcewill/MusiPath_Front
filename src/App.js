@@ -37,7 +37,7 @@ class App extends React.Component {
     }
 
     scrollListner() {
-        if (window.scrollY > 10) {
+        if (window.scrollY > 20) {
             this.setState({ blackHeader: true })
         } else {
             this.setState({ blackHeader: false })

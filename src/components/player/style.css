@@ -9,7 +9,7 @@
 
 .player--barra{
     background: rgba(21, 21, 23, 1);
-    height: 80px;
+    height: 70px;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -26,8 +26,8 @@
 
 .play-pause{
     padding-top: 5px;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     display: inline-block;
     align-items: center;

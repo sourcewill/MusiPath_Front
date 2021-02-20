@@ -21,10 +21,11 @@ body {
 
 .gradiente-vertical-topo{
   padding-top: 100px;
-  background: linear-gradient(to top, #202123 0%, transparent 300%);
+  background: linear-gradient(to top, #202123 0%, transparent 250%);
 }
 
 .background-topo{
   background-image: url('./images/background-blur.jpg');
   background-size: cover;
+  background-position-y: -100px;
 }

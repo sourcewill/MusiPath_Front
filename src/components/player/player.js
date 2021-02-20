@@ -23,7 +23,6 @@ class Player extends React.Component {
 
         this.state = {
             player: null,
-            sliders: false,
             time: 0,
             playing: true,
             volume: 80,
@@ -78,7 +77,6 @@ class Player extends React.Component {
         this.setState(
             {
                 player: event.target,
-                sliders: true,
                 totalTime: event.target.getDuration()
             }
         )
@@ -194,7 +192,7 @@ class Player extends React.Component {
                     <YouTube className='youtube' videoId={this.getVideoId()} onReady={this.onPlayerReady} onStateChange={this.onPlayerStateChange}></YouTube>
                 )}
 
-                {(this.state.sliders &&
+                {(this.state.player !== null &&
                     <div className='music--tempo'>
                         <input className='slider--tempo'
                             onInput={(e) => (this.setTimeValue(e.target.value))}
@@ -206,11 +204,11 @@ class Player extends React.Component {
                 <div className='player--barra'>
 
                     <div className='play-pause' onClick={this.playPause}>
-                        {(!this.state.playing) && <PlayArrowIcon className="icon--play" style={{ fontSize: '40px' }} />}
-                        {(this.state.playing) && <PauseIcon className="icon--pause" style={{ fontSize: '40px' }} />}
+                        {(!this.state.playing) && <PlayArrowIcon className="icon--play" style={{ fontSize: '30px' }} />}
+                        {(this.state.playing) && <PauseIcon className="icon--pause" style={{ fontSize: '30px' }} />}
                     </div>
 
-                    {(this.state.sliders &&
+                    {(this.state.player !== null &&
                         <div className='music--info'>
                             <div className='music--name'>
                                 {this.props.jsonMusica.nome}

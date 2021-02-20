@@ -3,15 +3,17 @@ input:focus, textarea:focus, select:focus{
 }
 
 .formBusca{
+    position: relative;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    display: flex;
     height: 35px;
+    width: 50%;
 }
 
 .campoBusca {
     height: 100%;
-    width: 50%;
+    width: 100%;
     border-style:none;
     border-radius: 5px 0px 0px 5px;
     font-size: 16px;
@@ -20,10 +22,10 @@ input:focus, textarea:focus, select:focus{
 
 .botaoBuscar {
     height: 100%;
-    width: 15%;
+    width: 100px;
     border-style:none;
     border-radius: 0px 5px 5px 0px;
-    background: rgb(80, 80, 80);
+    background: rgba(255, 255, 255, 0.2);
     color: white;
     justify-content: center;
     align-items: center;
@@ -33,5 +35,5 @@ input:focus, textarea:focus, select:focus{
 }
 
 .botaoBuscar:hover{
-    background: rgb(130, 130, 130);
+    background: rgba(255, 255, 255, 0.3);
 }

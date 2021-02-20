@@ -5,44 +5,54 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 class Artista extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
 
-        this.refArtista = React.createRef() 
+        this.refArtista = React.createRef()
 
         this.leftArrowClicked = this.leftArrowClicked.bind(this)
         this.rightArrowClicked = this.rightArrowClicked.bind(this)
+        this.needArrows = this.needArrows.bind(this)
 
         this.state = {
-            scrollX : 0
+            scrollX: 0
         }
     }
 
-    componentDidMount(){
-        this.refArtista.scrollIntoView({behavior: "smooth"})
+    componentDidMount() {
+        this.refArtista.scrollIntoView({ behavior: "smooth" })
     }
 
-    leftArrowClicked(){
+    leftArrowClicked() {
         let x = this.state.scrollX + Math.round(window.innerWidth / 2);
-        if(x > 0){
+        if (x > 0) {
             x = 0
         }
-        this.setState({scrollX : x})
+        this.setState({ scrollX: x })
     }
 
-    rightArrowClicked(){
+    rightArrowClicked() {
         let x = this.state.scrollX - Math.round(window.innerWidth / 2);
         let larguraLista = this.props.jsonArtista.albuns.length * 150;
-        if((window.innerWidth - larguraLista) > x){
+        if ((window.innerWidth - larguraLista) > x) {
             x = (window.innerWidth - larguraLista) - 60; //30 + 30 padding
         }
-        this.setState({scrollX : x})
+        this.setState({ scrollX: x })
+    }
+
+    needArrows() {
+        let larguraLista = this.props.jsonArtista.albuns.length * 150;
+        if (window.innerWidth < larguraLista) {
+            return true
+        } else {
+            return false
+        }
     }
 
     render() {
         return (
             <>
-                <section className="artista" ref={ (ref) => this.refArtista=ref } style={{
+                <section className="artista" ref={(ref) => this.refArtista = ref} style={{
                     backgroundSize: 'cover',
                     backgroundPosition: '0% 40%',
                     backgroundImage: `url(${this.props.jsonArtista.urlImagem})`
@@ -59,20 +69,26 @@ class Artista extends React.Component {
 
                                 <div className="albumRow">
                                     <h2>Albuns</h2>
-                                    <div className="albumRow--left" onClick={this.leftArrowClicked}>
-                                        <NavigateBeforeIcon className="left--icon" style={{fontSize: 50}} />
-                                    </div>
-                                    <div className="albumRow--right" onClick={this.rightArrowClicked}>
-                                        <NavigateNextIcon className="right--icon" style={{fontSize: 50}}/>
-                                    </div>
+                                    {(this.needArrows()) &&
+                                        <>
+                                            <div className="albumRow--left" onClick={this.leftArrowClicked}>
+                                                <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
+                                            </div>
+                                            <div className="albumRow--right" onClick={this.rightArrowClicked}>
+                                                <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
+                                            </div>
+                                        </>
+                                    }
+
                                     <div className="albumRow--listarea">
                                         <div className="albumRow--list" style={{
-                                            marginLeft : this.state.scrollX,
-                                            width : 99999
+                                            marginLeft: this.needArrows() ? this.state.scrollX : 0,
+                                            width: 99999
                                         }}>
                                             {this.props.jsonArtista.albuns.map((album) => (
                                                 <div className="albumRow--item" key={album.mbid}>
-                                                    <img src={album.urlImagem} alt={album.nome} onClick={() => this.props.onClickAlbum(album)}></img>
+                                                    <img className='albumRow--item--img' src={album.urlImagem} alt={album.nome} onClick={() => this.props.onClickAlbum(album)}></img>
+                                                    <div className='albumRow--item--name'>{album.nome}</div>
                                                 </div>
                                             ))}
                                         </div>
