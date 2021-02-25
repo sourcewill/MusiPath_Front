@@ -24,7 +24,7 @@ class Player extends React.Component {
         this.state = {
             player: null,
             time: 0,
-            playing: true,
+            playing: false,
             volume: 80,
             volumeAnterior: 80,
         }
@@ -130,19 +130,21 @@ class Player extends React.Component {
     }
 
     setPlayerVolume(value) {
-
         this.setState(
             {
                 volume: value
             }
         )
-
-        this.state.player.setVolume(value)
+        if (this.state.player !== null) {
+            this.state.player.setVolume(value)
+        }
     }
 
     setPlayerTime() {
-        this.state.player.seekTo(this.state.time, true)
-        this.setState({ sliderTimeDragged: false })
+        if (this.state.player !== null) {
+            this.state.player.seekTo(this.state.time, true)
+            this.setState({ sliderTimeDragged: false })
+        }
     }
 
     setTimeValue(value) {
@@ -172,21 +174,19 @@ class Player extends React.Component {
     }
 
     volumeOnOff() {
-        if (this.state.player !== null) {
-            if (this.state.volume > 0) {
-                this.setState({ volumeAnterior: this.state.volume })
-                this.setPlayerVolume(0)
-            } else {
-                this.setPlayerVolume(this.state.volumeAnterior)
-            }
+        if (this.state.volume > 0) {
+            this.setState({ volumeAnterior: this.state.volume })
+            this.setPlayerVolume(0)
+        } else {
+            this.setPlayerVolume(this.state.volumeAnterior)
         }
+
     }
 
     render() {
         return (
             <div className='player' style={{
-                bottom: (this.state.player !== null ? '0px' : '-100px')
-
+                bottom: (this.props.exibirPlayer ? '0px' : '-100px')
             }}>
                 {((this.props.jsonMusica !== null) &&
                     <YouTube className='youtube' videoId={this.getVideoId()} onReady={this.onPlayerReady} onStateChange={this.onPlayerStateChange}></YouTube>

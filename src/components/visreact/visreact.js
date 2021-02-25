@@ -55,7 +55,7 @@ export default class VisReact extends React.Component {
 				},
 				interaction: {
 					hoverEdges: true,
-					zoomView: true,
+					zoomView: false,
 					dragView: true
 				}
 			}

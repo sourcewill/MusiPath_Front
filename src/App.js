@@ -24,7 +24,8 @@ class App extends React.Component {
             jsonMusica: null,
             count: 1,
             blackHeader: false,
-            welcome: true
+            welcome: true,
+            exibirPlayer: false
         }
 
     }
@@ -49,27 +50,34 @@ class App extends React.Component {
         console.log(text)
 
         this.setState({
-            jsonGrafo: null
+            jsonGrafo: null,
+            jsonArtista: null,
+            jsonAlbum: null
         })
 
-        const response = await APIService.getJsonGrafoArtista(text, 3)
+        const responseGrafo = await APIService.getJsonGrafoArtista('nome', text, 3)
+        const responseArtista = await APIService.getArtistaPorNome(text)
 
         this.setState(
             {
-                jsonGrafo: response.data,
-                jsonArtista: null,
-                jsonAlbum: null,
+                jsonGrafo: responseGrafo.data,
                 count: (this.state.count + 1),
-                welcome: false
+                jsonArtista: responseArtista.data,
+                jsonAlbum: null,                
+                welcome: false,
+                exibirPlayer: true
             }
         )
     }
 
     onClickArtist = async mbid => {
+        const responseGrafo = await APIService.getJsonGrafoArtista('mbid', mbid, 3)
         const response = await APIService.getArtistaPorMbid(mbid)
         console.log(response.data)
         this.setState(
             {
+                jsonGrafo: responseGrafo.data,
+                count: (this.state.count + 1),
                 jsonArtista: response.data,
                 jsonAlbum: null
             }
@@ -113,7 +121,7 @@ class App extends React.Component {
                     {(this.state.jsonArtista !== null) && <Artista jsonArtista={this.state.jsonArtista} onClickAlbum={this.onClickAlbum} />}
                     {(this.state.jsonAlbum !== null) && <Album jsonAlbum={this.state.jsonAlbum} onClickMusica={this.onClickMusica} />}
                 </div>
-                <Player jsonMusica={this.state.jsonMusica} />
+                <Player jsonMusica={this.state.jsonMusica} exibirPlayer={this.state.exibirPlayer} />
 
             </>
         )

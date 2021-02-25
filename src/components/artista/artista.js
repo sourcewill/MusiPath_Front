@@ -20,7 +20,7 @@ class Artista extends React.Component {
     }
 
     componentDidMount() {
-        this.refArtista.scrollIntoView({ behavior: "smooth" })
+        /*this.refArtista.scrollIntoView({ behavior: "smooth" })*/
     }
 
     leftArrowClicked() {
