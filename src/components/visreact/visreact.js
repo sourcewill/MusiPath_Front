@@ -16,7 +16,7 @@ export default class VisReact extends React.Component {
 				/*this.state.network.focus(
 					event.nodes[0],
 					{
-						scale: 0.8,
+						scale: 1.0,
 						animation: true
 					})*/
 			}
@@ -55,8 +55,8 @@ export default class VisReact extends React.Component {
 				},
 				interaction: {
 					hoverEdges: true,
-					zoomView: false,
-					dragView: false
+					zoomView: true,
+					dragView: true
 				}
 			}
 

@@ -9,6 +9,7 @@ input:focus, textarea:focus, select:focus{
     align-items: center;
     height: 35px;
     width: 50%;
+    margin-bottom: 0px;
 }
 
 .campoBusca {

@@ -8,6 +8,7 @@ import Busca from './components/busca/busca'
 import Artista from './components/artista/artista'
 import Album from './components/album/album'
 import Player from './components/player/player'
+import Welcome from './components/welcome/welcome'
 
 class App extends React.Component {
 
@@ -104,7 +105,7 @@ class App extends React.Component {
                     <div className='background-topo'>
                         <div className='gradiente-vertical-topo'>
                             <Busca onSubmit={this.onSearchSubmit} />
-                            {(this.state.welcome) && <div>BEM VINDO!</div>}
+                            {(this.state.welcome) && <Welcome />}
                             {(!this.state.welcome && (this.state.jsonGrafo === null)) && <div>CARREGANDO...</div>}
                             {(this.state.jsonGrafo !== null) && <VisReact jsonGrafo={this.state.jsonGrafo} key={this.state.count} onClickArtist={this.onClickArtist} />}
                         </div>
