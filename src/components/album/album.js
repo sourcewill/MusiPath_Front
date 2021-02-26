@@ -109,35 +109,37 @@ export default class Album extends React.Component {
                     ))}
                 </section>
 
-                <section className="albuns-recomendados">
-                    <div className="albumRow">
-                        <h2>Albuns similares a {this.props.jsonAlbum.nome}</h2>
-                        {(this.needArrows()) &&
-                            <>
-                                <div className="albumRow--left" onClick={this.leftArrowClicked}>
-                                    <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
-                                </div>
-                                <div className="albumRow--right" onClick={this.rightArrowClicked}>
-                                    <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
-                                </div>
-                            </>
-                        }
-
-                        <div className="albumRow--listarea">
-                            <div className="albumRow--list" style={{
-                                marginLeft: this.needArrows() ? this.state.scrollX : 0,
-                                width: 99999
-                            }}>
-                                {this.props.jsonAlbum.albunsSimilares.map((album) => (
-                                    <div className="albumRow--item" key={album.mbidSimilar}>
-                                        <img className='albumRow--item--img' src={album.urlImagem} alt={album.nome} onClick={() => this.onClickAlbumRecomendado(album)}></img>
-                                        <div className='albumRow--item--name'>{album.nome}</div>
+                {this.props.jsonAlbum.albunsSimilares.length > 0 &&
+                    <section className="albuns-recomendados">
+                        <div className="albumRow">
+                            <h2>Albuns similares a {this.props.jsonAlbum.nome}</h2>
+                            {(this.needArrows()) &&
+                                <>
+                                    <div className="albumRow--left" onClick={this.leftArrowClicked}>
+                                        <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
                                     </div>
-                                ))}
+                                    <div className="albumRow--right" onClick={this.rightArrowClicked}>
+                                        <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
+                                    </div>
+                                </>
+                            }
+
+                            <div className="albumRow--listarea">
+                                <div className="albumRow--list" style={{
+                                    marginLeft: this.needArrows() ? this.state.scrollX : 0,
+                                    width: 99999
+                                }}>
+                                    {this.props.jsonAlbum.albunsSimilares.map((album) => (
+                                        <div className="albumRow--item" key={album.mbidSimilar}>
+                                            <img className='albumRow--item--img' src={album.urlImagem} alt={album.nome} onClick={() => this.onClickAlbumRecomendado(album)}></img>
+                                            <div className='albumRow--item--name'>{album.nome}</div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                }
             </div>
         )
     }
