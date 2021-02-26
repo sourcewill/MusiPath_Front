@@ -21,6 +21,15 @@ class ArtistaService {
     getJsonGrafoArtista(tipoBusca, chave, nivelLimite){
         return axios.get(URL_API + 'grafo/grafoartista/' + tipoBusca + '/' + chave + '/' + nivelLimite);
     }
+
+    getAlbumPorMbid(mbid){
+        console.log('Busca por mbid: ' + mbid);
+        return axios.get(URL_API + 'albuns/buscarpormbid/' + mbid);
+    }
+
+    getArtistaPorAlbumMbid(mbid){
+        return axios.get(URL_API + 'artistas/buscarporalbummbid/' + mbid);
+    }
 }
 
 export default new ArtistaService();

@@ -21,6 +21,7 @@ class App extends React.Component {
             jsonGrafo: null,
             jsonArtista: null,
             jsonAlbum: null,
+            jsonArtistaDoAlbum: null,
             jsonMusica: null,
             count: 1,
             blackHeader: false,
@@ -51,8 +52,7 @@ class App extends React.Component {
 
         this.setState({
             jsonGrafo: null,
-            jsonArtista: null,
-            jsonAlbum: null
+            jsonArtista: null
         })
 
         const responseGrafo = await APIService.getJsonGrafoArtista('nome', text, 3)
@@ -62,8 +62,7 @@ class App extends React.Component {
             {
                 jsonGrafo: responseGrafo.data,
                 count: (this.state.count + 1),
-                jsonArtista: responseArtista.data,
-                jsonAlbum: null,                
+                jsonArtista: responseArtista.data,             
                 welcome: false,
                 exibirPlayer: true
             }
@@ -79,17 +78,17 @@ class App extends React.Component {
                 jsonGrafo: responseGrafo.data,
                 count: (this.state.count + 1),
                 jsonArtista: response.data,
-                jsonAlbum: null
             }
         )
     }
 
     onClickAlbum = async jsonAlbum => {
         console.log(jsonAlbum)
-
+        const response = await APIService.getArtistaPorAlbumMbid(jsonAlbum.mbid)
         this.setState(
             {
-                jsonAlbum: jsonAlbum
+                jsonAlbum: jsonAlbum,
+                jsonArtistaDoAlbum: response.data
             }
         )
     }
@@ -119,7 +118,7 @@ class App extends React.Component {
                         </div>
                     </div>
                     {(this.state.jsonArtista !== null) && <Artista jsonArtista={this.state.jsonArtista} onClickAlbum={this.onClickAlbum} />}
-                    {(this.state.jsonAlbum !== null) && <Album jsonAlbum={this.state.jsonAlbum} onClickMusica={this.onClickMusica} />}
+                    {(this.state.jsonAlbum !== null) && <Album jsonAlbum={this.state.jsonAlbum} jsonArtista={this.state.jsonArtistaDoAlbum} onClickMusica={this.onClickMusica} onClickAlbum={this.onClickAlbum} onClickArtist={this.onClickArtist} />}
                 </div>
                 <Player jsonMusica={this.state.jsonMusica} exibirPlayer={this.state.exibirPlayer} />
 
