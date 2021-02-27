@@ -50,13 +50,14 @@ class App extends React.Component {
     onSearchSubmit = async text => {
         console.log(text)
 
-        this.setState({
-            jsonGrafo: null,
-            jsonArtista: null
-        })
+        const responseArtista = await APIService.getArtistaPorNome(text)
+        
+        if(responseArtista.status === 204){
+            console.log('artista nao encontrado')
+            return;
+        }
 
         const responseGrafo = await APIService.getJsonGrafoArtista('nome', text, 3)
-        const responseArtista = await APIService.getArtistaPorNome(text)
 
         this.setState(
             {

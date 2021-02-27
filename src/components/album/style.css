@@ -20,6 +20,7 @@
 .album--tags{
     display: flex;
     margin-top: 5px;
+    margin-bottom: 15px;
     justify-content: right;
     padding-left: 10%;
 }
@@ -97,7 +98,6 @@
 
 .albuns-recomendados{
     position: relative;
-    top: -50px;
+    top: -60px;
     user-select: none;
-    padding-bottom: 10px;
 }

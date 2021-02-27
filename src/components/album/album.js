@@ -5,6 +5,7 @@ import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { CSSTransition } from "react-transition-group";
 
 export default class Album extends React.Component {
 
@@ -76,71 +77,79 @@ export default class Album extends React.Component {
 
     render() {
         return (
-            <div className='album-background'>
-                <section className="album" ref={(ref) => this.refAlbum = ref}>
-                    <div className='album-nome'>
-                        {this.props.jsonAlbum.nome}
-                    </div>
-                    <div className="album--tags">
-                        {console.log(this.state.jsonArtista)}
-                        <div className='album-nome-artista' onClick={() => (this.props.onClickArtist(this.props.jsonArtista.mbid))}>{this.props.jsonArtista.nome}</div>
-                        {this.props.jsonAlbum.tags.map((tag) => (
-                            <div className="album--tag" key={tag}>{tag}</div>
-                        ))}
-                    </div>
-                    {this.props.jsonAlbum.musicas.map((musica) => (
-                        <div className='album-row' key={musica.mbid} id={musica.mbid} onClick={() => (this.clickMusica(musica))}>
-                            {(musica.mbid === this.state.idMusicaAtual)
-                                ?
-                                <PlayArrowIcon className='icon-music-selected'
-                                    style={{
-                                        fontSize: '16px',
-                                    }} />
-                                :
-                                <MusicNoteIcon className='icon-music'
-                                    style={{
-                                        fontSize: '16px',
-                                    }} />}
-
-                            <div className='music-name'>
-                                {musica.nome}
-                            </div>
+            <CSSTransition
+                key={this.props.jsonAlbum.mbid}
+                in={true}
+                appear={true}
+                timeout={1000}
+                classNames="fade"
+            >
+                <div className='album-background'>
+                    <section className="album" ref={(ref) => this.refAlbum = ref}>
+                        <div className='album-nome'>
+                            {this.props.jsonAlbum.nome}
                         </div>
-                    ))}
-                </section>
+                        <div className="album--tags">
+                            {console.log(this.state.jsonArtista)}
+                            <div className='album-nome-artista' onClick={() => (this.props.onClickArtist(this.props.jsonArtista.mbid))}>{this.props.jsonArtista.nome}</div>
+                            {this.props.jsonAlbum.tags.map((tag) => (
+                                <div className="album--tag" key={tag}>{tag}</div>
+                            ))}
+                        </div>
+                        {this.props.jsonAlbum.musicas.map((musica) => (
+                            <div className='album-row' key={musica.mbid} id={musica.mbid} onClick={() => (this.clickMusica(musica))}>
+                                {(musica.mbid === this.state.idMusicaAtual)
+                                    ?
+                                    <PlayArrowIcon className='icon-music-selected'
+                                        style={{
+                                            fontSize: '16px',
+                                        }} />
+                                    :
+                                    <MusicNoteIcon className='icon-music'
+                                        style={{
+                                            fontSize: '16px',
+                                        }} />}
 
-                {this.props.jsonAlbum.albunsSimilares.length > 0 &&
-                    <section className="albuns-recomendados">
-                        <div className="albumRow">
-                            <h2>Albuns similares a {this.props.jsonAlbum.nome}</h2>
-                            {(this.needArrows()) &&
-                                <>
-                                    <div className="albumRow--left" onClick={this.leftArrowClicked}>
-                                        <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
-                                    </div>
-                                    <div className="albumRow--right" onClick={this.rightArrowClicked}>
-                                        <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
-                                    </div>
-                                </>
-                            }
-
-                            <div className="albumRow--listarea">
-                                <div className="albumRow--list" style={{
-                                    marginLeft: this.needArrows() ? this.state.scrollX : 0,
-                                    width: 99999
-                                }}>
-                                    {this.props.jsonAlbum.albunsSimilares.map((album) => (
-                                        <div className="albumRow--item" key={album.mbidSimilar}>
-                                            <img className='albumRow--item--img' src={album.urlImagem} alt={album.nome} onClick={() => this.onClickAlbumRecomendado(album)}></img>
-                                            <div className='albumRow--item--name'>{album.nome}</div>
-                                        </div>
-                                    ))}
+                                <div className='music-name'>
+                                    {musica.nome}
                                 </div>
                             </div>
-                        </div>
+                        ))}
                     </section>
-                }
-            </div>
+
+                    {this.props.jsonAlbum.albunsSimilares.length > 0 &&
+                        <section className="albuns-recomendados">
+                            <div className="albumRow">
+                                <h2>Albuns Similares a {this.props.jsonAlbum.nome}</h2>
+                                {(this.needArrows()) &&
+                                    <>
+                                        <div className="albumRow--left" onClick={this.leftArrowClicked}>
+                                            <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
+                                        </div>
+                                        <div className="albumRow--right" onClick={this.rightArrowClicked}>
+                                            <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
+                                        </div>
+                                    </>
+                                }
+
+                                <div className="albumRow--listarea">
+                                    <div className="albumRow--list" style={{
+                                        marginLeft: this.needArrows() ? this.state.scrollX : 0,
+                                        width: 99999
+                                    }}>
+                                        {this.props.jsonAlbum.albunsSimilares.map((album) => (
+                                            <div className="albumRow--item" key={album.mbidSimilar}>
+                                                <img className='albumRow--item--img' src={album.urlImagem === "" ? "https://i.ibb.co/vxM7njb/music.png" : album.urlImagem} alt={album.nome} onClick={() => this.onClickAlbumRecomendado(album)}></img>
+                                                <div className='albumRow--item--name'>{album.nome}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    }
+                </div>
+            </CSSTransition>
         )
     }
 }

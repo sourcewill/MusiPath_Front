@@ -2,6 +2,7 @@ import React from 'react'
 import './style.css'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { CSSTransition } from "react-transition-group";
 
 class Artista extends React.Component {
 
@@ -52,52 +53,60 @@ class Artista extends React.Component {
     render() {
         return (
             <>
-                <section className="artista" ref={(ref) => this.refArtista = ref} style={{
-                    backgroundSize: 'cover',
-                    backgroundPosition: '0% 40%',
-                    backgroundImage: `url(${this.props.jsonArtista.urlImagem})`
-                }}>
-                    <div className="artista--vertical--top">
-                        <div className="artista--vertical--bottom">
-                            <div className="artista--horizontal">
-                                <div className="artista--nome">{this.props.jsonArtista.nome}</div>
-                                <div className="artista--tags">
-                                    {this.props.jsonArtista.tags.map((tag) => (
-                                        <div className="artista--tag" key={tag}>{tag}</div>
-                                    ))}
-                                </div>
+                <CSSTransition
+                    key={this.props.jsonArtista.mbid}
+                    in={true}
+                    appear={true}
+                    timeout={1000}
+                    classNames="slide"
+                >
+                    <section className="artista" ref={(ref) => this.refArtista = ref} style={{
+                        backgroundSize: 'cover',
+                        backgroundPosition: '0% 40%',
+                        backgroundImage: `url(${this.props.jsonArtista.urlImagem})`
+                    }}>
+                        <div className="artista--vertical--top">
+                            <div className="artista--vertical--bottom">
+                                <div className="artista--horizontal">
+                                    <div className="artista--nome">{this.props.jsonArtista.nome}</div>
+                                    <div className="artista--tags">
+                                        {this.props.jsonArtista.tags.map((tag) => (
+                                            <div className="artista--tag" key={tag}>{tag}</div>
+                                        ))}
+                                    </div>
 
-                                <div className="albumRow">
-                                    <h2>Albuns</h2>
-                                    {(this.needArrows()) &&
-                                        <>
-                                            <div className="albumRow--left" onClick={this.leftArrowClicked}>
-                                                <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
-                                            </div>
-                                            <div className="albumRow--right" onClick={this.rightArrowClicked}>
-                                                <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
-                                            </div>
-                                        </>
-                                    }
-
-                                    <div className="albumRow--listarea">
-                                        <div className="albumRow--list" style={{
-                                            marginLeft: this.needArrows() ? this.state.scrollX : 0,
-                                            width: 99999
-                                        }}>
-                                            {this.props.jsonArtista.albuns.map((album) => (
-                                                <div className="albumRow--item" key={album.mbid}>
-                                                    <img className='albumRow--item--img' src={album.urlImagem} alt={album.nome} onClick={() => this.props.onClickAlbum(album)}></img>
-                                                    <div className='albumRow--item--name'>{album.nome}</div>
+                                    <div className="albumRow">
+                                        <h2>Albuns</h2>
+                                        {(this.needArrows()) &&
+                                            <>
+                                                <div className="albumRow--left" onClick={this.leftArrowClicked}>
+                                                    <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
                                                 </div>
-                                            ))}
+                                                <div className="albumRow--right" onClick={this.rightArrowClicked}>
+                                                    <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
+                                                </div>
+                                            </>
+                                        }
+
+                                        <div className="albumRow--listarea">
+                                            <div className="albumRow--list" style={{
+                                                marginLeft: this.needArrows() ? this.state.scrollX : 0,
+                                                width: 99999
+                                            }}>
+                                                {this.props.jsonArtista.albuns.map((album) => (
+                                                    <div className="albumRow--item" key={album.mbid}>
+                                                        <img className='albumRow--item--img' src={album.urlImagem === "" ? "https://i.ibb.co/vxM7njb/music.png" : album.urlImagem} alt={album.nome} onClick={() => this.props.onClickAlbum(album)}></img>
+                                                        <div className='albumRow--item--name'>{album.nome}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </CSSTransition>
             </>
         )
     }
