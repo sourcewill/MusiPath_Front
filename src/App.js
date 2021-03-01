@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './style.css';
 import APIService from './services/APIService'
 
@@ -23,7 +23,6 @@ class App extends React.Component {
             jsonAlbum: null,
             jsonArtistaDoAlbum: null,
             jsonMusica: null,
-            count: 1,
             blackHeader: false,
             welcome: true,
             exibirPlayer: false
@@ -62,7 +61,6 @@ class App extends React.Component {
         this.setState(
             {
                 jsonGrafo: responseGrafo.data,
-                count: (this.state.count + 1),
                 jsonArtista: responseArtista.data,             
                 welcome: false,
                 exibirPlayer: true
@@ -77,7 +75,6 @@ class App extends React.Component {
         this.setState(
             {
                 jsonGrafo: responseGrafo.data,
-                count: (this.state.count + 1),
                 jsonArtista: response.data,
             }
         )
@@ -99,7 +96,6 @@ class App extends React.Component {
         this.setState(
             {
                 jsonMusica: musica,
-                countPlayer: (this.state.countPlayer + 1)
             }
         )
     }
@@ -115,7 +111,7 @@ class App extends React.Component {
                             <Busca onSubmit={this.onSearchSubmit} />
                             {(this.state.welcome) && <Welcome />}
                             {(!this.state.welcome && (this.state.jsonGrafo === null)) && <div>CARREGANDO...</div>}
-                            {(this.state.jsonGrafo !== null) && <VisReact jsonGrafo={this.state.jsonGrafo} key={this.state.count} onClickArtist={this.onClickArtist} />}
+                            {(this.state.jsonGrafo !== null) && <VisReact jsonGrafo={this.state.jsonGrafo} onClickArtist={this.onClickArtist} />}
                         </div>
                     </div>
                     {(this.state.jsonArtista !== null) && <Artista jsonArtista={this.state.jsonArtista} onClickAlbum={this.onClickAlbum} />}

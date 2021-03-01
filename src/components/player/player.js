@@ -47,13 +47,13 @@ class Player extends React.Component {
 
         switch (event.keyCode) {
             case 32: // Space
-                if (event.target === document.body) {
+                if (event.target.type !== 'text') {
                     event.preventDefault();
                     this.playPause()
                 }
                 break;
             case 109: // M
-                if (event.target === document.body) {
+                if (event.target.type !== 'text') {
                     this.volumeOnOff()
                 }
                 break;

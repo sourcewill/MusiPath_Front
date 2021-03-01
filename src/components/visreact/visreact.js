@@ -65,6 +65,19 @@ export default class VisReact extends React.Component {
 		this.events.click = this.events.click.bind(this);
 	}
 
+	componentDidUpdate(prevProps) {
+		if(prevProps.jsonGrafo.listaDeNos[0].id !== this.props.jsonGrafo.listaDeNos[0].id){
+			this.updateGraph()
+		}
+	}
+
+	updateGraph() {
+		this.state.network.setData({
+			nodes: this.getNosJson(),
+			edges: this.getArestasJson()
+		})
+	}
+
 	getNosJson() {
 		let nos = []
 		let numNos = this.props.jsonGrafo.listaDeNos.length
