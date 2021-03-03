@@ -13,17 +13,33 @@ export default class VisReact extends React.Component {
 				if (event.nodes[0] !== undefined) {
 					this.props.onClickArtist(event.nodes[0])
 				}
-				/*this.state.network.focus(
-					event.nodes[0],
-					{
-						scale: 1.0,
-						animation: true
-					})*/
+			},
+
+			hoverNode: function () {
+				document.getElementsByTagName('canvas')[0].style.cursor = 'pointer'
+			},
+
+			blurNode: function () {
+				document.getElementsByTagName('canvas')[0].style.cursor = 'default'
+			},
+
+			stabilized: function () {
+				if (this.state.graphIsUpdated) {
+					this.state.network.focus(
+						this.state.network.body.nodeIndices[0],
+						{
+							scale: 1.0,
+							animation: true
+						})
+					this.setState({graphIsUpdated: false})
+				}
 			}
 
 		}
 
 		this.state = {
+
+			graphIsUpdated: true,
 
 			graph: {
 				nodes: this.getNosJson(),
@@ -54,7 +70,7 @@ export default class VisReact extends React.Component {
 					}
 				},
 				interaction: {
-					hoverEdges: true,
+					hover: true,
 					zoomView: false,
 					dragView: true
 				}
@@ -63,10 +79,11 @@ export default class VisReact extends React.Component {
 		}
 
 		this.events.click = this.events.click.bind(this);
+		this.events.stabilized = this.events.stabilized.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
-		if(prevProps.jsonGrafo.listaDeNos[0].id !== this.props.jsonGrafo.listaDeNos[0].id){
+		if (prevProps.jsonGrafo.listaDeNos[0].id !== this.props.jsonGrafo.listaDeNos[0].id) {
 			this.updateGraph()
 		}
 	}
@@ -76,6 +93,11 @@ export default class VisReact extends React.Component {
 			nodes: this.getNosJson(),
 			edges: this.getArestasJson()
 		})
+		this.setState(
+			{
+				graphIsUpdated: true
+			}
+		)
 	}
 
 	getNosJson() {
@@ -99,9 +121,9 @@ export default class VisReact extends React.Component {
 	getCorByNivel(nivel) {
 
 		switch (nivel) {
-			case 1:
+			case 0:
 				return 'white'
-			case 2:
+			case 1:
 				return '#0EBDE8'
 			default:
 				return '#09718A'
@@ -111,9 +133,9 @@ export default class VisReact extends React.Component {
 	getCorTextoByNivel(nivel) {
 
 		switch (nivel) {
-			case 1:
+			case 0:
 				return '#09718A'
-			case 2:
+			case 1:
 				return 'white'
 			default:
 				return 'white'

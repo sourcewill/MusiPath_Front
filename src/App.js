@@ -56,7 +56,7 @@ class App extends React.Component {
             return;
         }
 
-        const responseGrafo = await APIService.getJsonGrafoArtista('nome', text, 3)
+        const responseGrafo = await APIService.getJsonGrafoArtista('nome', text, 3, 3)
 
         this.setState(
             {
@@ -69,7 +69,7 @@ class App extends React.Component {
     }
 
     onClickArtist = async mbid => {
-        const responseGrafo = await APIService.getJsonGrafoArtista('mbid', mbid, 3)
+        const responseGrafo = await APIService.getJsonGrafoArtista('mbid', mbid, 3, 3)
         const response = await APIService.getArtistaPorMbid(mbid)
         console.log(response.data)
         this.setState(
