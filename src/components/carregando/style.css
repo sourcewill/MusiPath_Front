@@ -1,0 +1,15 @@
+.carregando{
+    user-select: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 150px;
+    right: 0;
+    height: 50px;
+    display: flex;
+    padding-top: 10px;
+}
+
+.carregando img{
+    height: 100%;
+}

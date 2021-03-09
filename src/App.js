@@ -9,6 +9,8 @@ import Artista from './components/artista/artista'
 import Album from './components/album/album'
 import Player from './components/player/player'
 import Welcome from './components/welcome/welcome'
+import Alerta from './components/alerta/alerta'
+import Carregando from './components/carregando/carregando'
 
 class App extends React.Component {
 
@@ -16,6 +18,7 @@ class App extends React.Component {
         super(props)
 
         this.scrollListner = this.scrollListner.bind(this)
+        this.onSearchSubmit = this.onSearchSubmit.bind(this)
 
         this.state = {
             jsonGrafo: null,
@@ -26,7 +29,9 @@ class App extends React.Component {
             blackHeader: false,
             welcome: true,
             loading: false,
-            exibirPlayer: false
+            exibirPlayer: false,
+            alertaArtistaNaoEncontrado: false,
+            alertaFalhaServidor: false,
         }
 
     }
@@ -50,20 +55,40 @@ class App extends React.Component {
     onSearchSubmit = async text => {
         console.log(text)
 
-        this.setState({loading: true})
+        this.setState({ loading: true })
 
         let responseArtista = null;
 
         try {
             responseArtista = await APIService.getArtistaPorNome(text)
-        }catch(e){
+        } catch (e) {
             console.log('Erro de conexão com o servidor.')
+            this.setState({
+                loading: false,
+                alertaFalhaServidor: true
+            })
+
+            setTimeout(() => {
+                this.setState({
+                    alertaFalhaServidor: false
+                })
+            }, 3000)
             return;
         }
-        
-        if(responseArtista.status === 204){
+
+        if (responseArtista.status === 204) {
             console.log('artista nao encontrado')
-            this.setState({loading: false})
+            this.setState({
+                loading: false,
+                alertaArtistaNaoEncontrado: true
+            })
+
+            setTimeout(() => {
+                this.setState({
+                    alertaArtistaNaoEncontrado: false
+                })
+            }, 3000)
+
             return;
         }
 
@@ -72,7 +97,7 @@ class App extends React.Component {
         this.setState(
             {
                 jsonGrafo: responseGrafo.data,
-                jsonArtista: responseArtista.data,             
+                jsonArtista: responseArtista.data,
                 welcome: false,
                 loading: false,
                 exibirPlayer: true
@@ -82,7 +107,7 @@ class App extends React.Component {
 
     onClickArtist = async mbid => {
 
-        this.setState({loading: true})
+        this.setState({ loading: true })
         const responseGrafo = await APIService.getJsonGrafoArtista('mbid', mbid, 3, 3)
         const response = await APIService.getArtistaPorMbid(mbid)
         console.log(response.data)
@@ -119,20 +144,21 @@ class App extends React.Component {
         return (
             <>
                 <Header blackHeader={this.state.blackHeader} />
-
+                { (this.state.alertaArtistaNaoEncontrado) && <Alerta mensagem='Artista não encontrado.' cor='rgba(54, 160, 244, 0.8)' corTexto='rgba(255, 255, 255, 0.9)' />}
+                { (this.state.alertaFalhaServidor) && <Alerta mensagem='Falha na conexão com o servidor.' cor='rgba(245, 84, 72, 0.8)' corTexto='rgba(255, 255, 255, 0.9)' />}
                 <div className='conteudo'>
                     <div className='background-topo'>
                         <div className='gradiente-vertical-topo'>
                             <Busca onSubmit={this.onSearchSubmit} />
                             {(this.state.welcome) && <Welcome />}
-                            {(this.state.loading) && <div>Carregando...</div>}
+                            {(this.state.loading) && <Carregando />}
                             {(this.state.jsonGrafo !== null) && <VisReact jsonGrafo={this.state.jsonGrafo} onClickArtist={this.onClickArtist} />}
                         </div>
                     </div>
                     {(this.state.jsonArtista !== null) && <Artista jsonArtista={this.state.jsonArtista} onClickAlbum={this.onClickAlbum} />}
                     {(this.state.jsonAlbum !== null) && <Album jsonAlbum={this.state.jsonAlbum} jsonArtista={this.state.jsonArtistaDoAlbum} onClickMusica={this.onClickMusica} onClickAlbum={this.onClickAlbum} onClickArtist={this.onClickArtist} />}
                 </div>
-                
+
                 <Player jsonMusica={this.state.jsonMusica} exibirPlayer={this.state.exibirPlayer} />
 
             </>
