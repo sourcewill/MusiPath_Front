@@ -76,7 +76,7 @@ class Artista extends React.Component {
                                     </div>
 
                                     <div className="albumRow">
-                                        <h2>Albuns</h2>
+                                        <h2>Álbuns</h2>
                                         {(this.needArrows()) &&
                                             <>
                                                 <div className="albumRow--left" onClick={this.leftArrowClicked}>

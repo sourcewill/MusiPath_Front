@@ -22,12 +22,24 @@ export default class Album extends React.Component {
 
         this.state = {
             idMusicaAtual: null,
+            mbidAlbumAtual: null,
             scrollX: 0,
         }
     }
 
     componentDidMount() {
         this.refAlbum.scrollIntoView({ behavior: "smooth" })
+    }
+
+    componentDidUpdate(){
+        if(this.state.mbidAlbumAtual !== this.props.jsonAlbum.mbid){
+            this.refAlbum.scrollIntoView({ behavior: "smooth" })
+            this.setState(
+                {
+                    mbidAlbumAtual: this.props.jsonAlbum.mbid
+                }
+            )
+        }
     }
 
     clickMusica(musica) {
@@ -84,8 +96,41 @@ export default class Album extends React.Component {
                 timeout={1000}
                 classNames="fade"
             >
-                <div className='album-background'>
-                    <section className="album" ref={(ref) => this.refAlbum = ref}>
+                <div className='album-background' ref={(ref) => this.refAlbum = ref}>
+
+                {this.props.jsonAlbum.albunsSimilares.length > 0 &&
+                        <section className="albuns-recomendados">
+                            <div className="albumRow">
+                                <h2>Recomendação de álbuns similares a {this.props.jsonAlbum.nome}</h2>
+                                {(this.needArrows()) &&
+                                    <>
+                                        <div className="albumRow--left" onClick={this.leftArrowClicked}>
+                                            <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
+                                        </div>
+                                        <div className="albumRow--right" onClick={this.rightArrowClicked}>
+                                            <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
+                                        </div>
+                                    </>
+                                }
+
+                                <div className="albumRow--listarea">
+                                    <div className="albumRow--list" style={{
+                                        marginLeft: this.needArrows() ? this.state.scrollX : 0,
+                                        width: 99999
+                                    }}>
+                                        {this.props.jsonAlbum.albunsSimilares.map((album) => (
+                                            <div className="albumRow--item" key={album.mbidSimilar}>
+                                                <img className='albumRow--item--img' src={album.urlImagem === "" ? "https://i.ibb.co/vxM7njb/music.png" : album.urlImagem} alt={album.nome} onClick={() => this.onClickAlbumRecomendado(album)}></img>
+                                                <div className='albumRow--item--name'>{album.nome}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    }
+
+                    <section className="album">
                         <div className='album-nome'>
                             {this.props.jsonAlbum.nome}
                         </div>
@@ -116,37 +161,7 @@ export default class Album extends React.Component {
                         ))}
                     </section>
 
-                    {this.props.jsonAlbum.albunsSimilares.length > 0 &&
-                        <section className="albuns-recomendados">
-                            <div className="albumRow">
-                                <h2>Albuns Similares a {this.props.jsonAlbum.nome}</h2>
-                                {(this.needArrows()) &&
-                                    <>
-                                        <div className="albumRow--left" onClick={this.leftArrowClicked}>
-                                            <NavigateBeforeIcon className="left--icon" style={{ fontSize: 50 }} />
-                                        </div>
-                                        <div className="albumRow--right" onClick={this.rightArrowClicked}>
-                                            <NavigateNextIcon className="right--icon" style={{ fontSize: 50 }} />
-                                        </div>
-                                    </>
-                                }
-
-                                <div className="albumRow--listarea">
-                                    <div className="albumRow--list" style={{
-                                        marginLeft: this.needArrows() ? this.state.scrollX : 0,
-                                        width: 99999
-                                    }}>
-                                        {this.props.jsonAlbum.albunsSimilares.map((album) => (
-                                            <div className="albumRow--item" key={album.mbidSimilar}>
-                                                <img className='albumRow--item--img' src={album.urlImagem === "" ? "https://i.ibb.co/vxM7njb/music.png" : album.urlImagem} alt={album.nome} onClick={() => this.onClickAlbumRecomendado(album)}></img>
-                                                <div className='albumRow--item--name'>{album.nome}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    }
+                   
                 </div>
             </CSSTransition>
         )

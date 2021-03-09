@@ -8,7 +8,7 @@ class BarraBusca extends React.Component {
         super(props)
 
         this.state = {
-            text: ' '
+            text: ''
         }
     }
 
@@ -17,8 +17,14 @@ class BarraBusca extends React.Component {
     }
 
     onFormSubmit = event => {
+        
         event.preventDefault()
         this.props.onSubmit(this.state.text)
+        this.setState(
+            {
+                text: ''
+            }
+        )
     }
 
     render() {
@@ -26,7 +32,7 @@ class BarraBusca extends React.Component {
         return (
             <>
                 <form className="formBusca" onSubmit={this.onFormSubmit}>
-                    <input className="campoBusca" type="text" placeholder="Artista" onChange={(e) => this.atualizarInput(e)} />
+                    <input className="campoBusca" type="text" value={this.state.text} placeholder="Artista" onChange={(e) => this.atualizarInput(e)} />
                     <div className="botaoBuscar" onClick={this.onFormSubmit}>
                         <SearchIcon className="iconeBusca"/>
                     </div>

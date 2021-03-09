@@ -7,6 +7,8 @@ export default class VisReact extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.refGrafo = React.createRef()
+
 		this.events = {
 
 			click: function (event) {
@@ -31,7 +33,7 @@ export default class VisReact extends React.Component {
 							scale: 1.0,
 							animation: true
 						})
-					this.setState({graphIsUpdated: false})
+					this.setState({ graphIsUpdated: false })
 				}
 			}
 
@@ -98,6 +100,7 @@ export default class VisReact extends React.Component {
 				graphIsUpdated: true
 			}
 		)
+		this.refGrafo.scrollIntoView({ behavior: "smooth" })
 	}
 
 	getNosJson() {
@@ -161,20 +164,20 @@ export default class VisReact extends React.Component {
 
 	render() {
 		return (
-			<>
+			<div className='graph' ref={(ref) => this.refGrafo = ref}>
+				<div className="gradient-graph-bottom"></div>
+				<div className="gradient-graph-top"></div>
+				<Graph
+					graph={this.state.graph}
+					options={this.state.options}
+					events={this.events}
+					style={this.state.style}
+					getNetwork={this.getNetwork}
+					vis={vis => (this.vis = vis)}
+				/>
 
-				<div className="vertical--bottom">
-					<Graph
-						graph={this.state.graph}
-						options={this.state.options}
-						events={this.events}
-						style={this.state.style}
-						getNetwork={this.getNetwork}
-						vis={vis => (this.vis = vis)}
-					/>
-				</div>
 
-			</>
+			</div>
 		);
 	}
 }

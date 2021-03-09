@@ -25,6 +25,7 @@ class App extends React.Component {
             jsonMusica: null,
             blackHeader: false,
             welcome: true,
+            loading: false,
             exibirPlayer: false
         }
 
@@ -49,10 +50,20 @@ class App extends React.Component {
     onSearchSubmit = async text => {
         console.log(text)
 
-        const responseArtista = await APIService.getArtistaPorNome(text)
+        this.setState({loading: true})
+
+        let responseArtista = null;
+
+        try {
+            responseArtista = await APIService.getArtistaPorNome(text)
+        }catch(e){
+            console.log('Erro de conexão com o servidor.')
+            return;
+        }
         
         if(responseArtista.status === 204){
             console.log('artista nao encontrado')
+            this.setState({loading: false})
             return;
         }
 
@@ -63,17 +74,21 @@ class App extends React.Component {
                 jsonGrafo: responseGrafo.data,
                 jsonArtista: responseArtista.data,             
                 welcome: false,
+                loading: false,
                 exibirPlayer: true
             }
         )
     }
 
     onClickArtist = async mbid => {
+
+        this.setState({loading: true})
         const responseGrafo = await APIService.getJsonGrafoArtista('mbid', mbid, 3, 3)
         const response = await APIService.getArtistaPorMbid(mbid)
         console.log(response.data)
         this.setState(
             {
+                loading: false,
                 jsonGrafo: responseGrafo.data,
                 jsonArtista: response.data,
             }
@@ -104,19 +119,20 @@ class App extends React.Component {
         return (
             <>
                 <Header blackHeader={this.state.blackHeader} />
-                <div className='conteudo'>
 
+                <div className='conteudo'>
                     <div className='background-topo'>
                         <div className='gradiente-vertical-topo'>
                             <Busca onSubmit={this.onSearchSubmit} />
                             {(this.state.welcome) && <Welcome />}
-                            {(!this.state.welcome && (this.state.jsonGrafo === null)) && <div>CARREGANDO...</div>}
+                            {(this.state.loading) && <div>Carregando...</div>}
                             {(this.state.jsonGrafo !== null) && <VisReact jsonGrafo={this.state.jsonGrafo} onClickArtist={this.onClickArtist} />}
                         </div>
                     </div>
                     {(this.state.jsonArtista !== null) && <Artista jsonArtista={this.state.jsonArtista} onClickAlbum={this.onClickAlbum} />}
                     {(this.state.jsonAlbum !== null) && <Album jsonAlbum={this.state.jsonAlbum} jsonArtista={this.state.jsonArtistaDoAlbum} onClickMusica={this.onClickMusica} onClickAlbum={this.onClickAlbum} onClickArtist={this.onClickArtist} />}
                 </div>
+                
                 <Player jsonMusica={this.state.jsonMusica} exibirPlayer={this.state.exibirPlayer} />
 
             </>
