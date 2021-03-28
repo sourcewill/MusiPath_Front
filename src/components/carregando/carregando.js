@@ -6,7 +6,7 @@ class Carregando extends React.Component {
     render() {
         return (
             <div className='carregando'>
-                <img src="https://olaargentina.com/wp-content/uploads/2019/11/loading-gif-transparent-10.gif" alt="Carregando..." />
+                <img src="http://www.oftalmed.com.br/files/images/loading.gif" alt="Carregando..." />
             </div>
         )
     }
