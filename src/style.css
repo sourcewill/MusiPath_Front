@@ -27,7 +27,7 @@ body {
 .background-topo{
   background-image: url('./images/background-blur.jpg');
   background-size: cover;
-  background-position-y: -100px;
+  
 }
 
 /* Transição fade */

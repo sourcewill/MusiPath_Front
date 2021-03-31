@@ -1,3 +1,26 @@
 p{
-    padding: 0 30px;
+    padding: 0 10% 0 10%;
+}
+
+.bemvindo{
+    display: inline-block;
+}
+
+.youtube-tutorial{
+    height: 270px;
+    width: 480px;
+    opacity: 1;
+    position:static;
+}
+
+@media (max-width:760px) {
+
+    p{
+        padding: 0 20px 0 20px;
+    }
+    
+    .youtube-tutorial{
+        width: 100%;
+    }
+
 }

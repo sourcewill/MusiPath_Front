@@ -30,7 +30,7 @@ export default class VisReact extends React.Component {
 					this.state.network.focus(
 						this.state.network.body.nodeIndices[0],
 						{
-							scale: 1.0,
+							scale: 0.8,
 							animation: true
 						})
 					this.setState({ graphIsUpdated: false })
@@ -49,7 +49,7 @@ export default class VisReact extends React.Component {
 			},
 
 			style: {
-				width: "100%", height: "400px"
+				width: "100%", height: "300px"
 			},
 
 			options: {
@@ -165,8 +165,6 @@ export default class VisReact extends React.Component {
 	render() {
 		return (
 			<div className='graph' ref={(ref) => this.refGrafo = ref}>
-				<div className="gradient-graph-bottom"></div>
-				<div className="gradient-graph-top"></div>
 				<Graph
 					graph={this.state.graph}
 					options={this.state.options}
@@ -175,8 +173,6 @@ export default class VisReact extends React.Component {
 					getNetwork={this.getNetwork}
 					vis={vis => (this.vis = vis)}
 				/>
-
-
 			</div>
 		);
 	}

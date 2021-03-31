@@ -149,3 +149,21 @@
 .albumRow:hover .albumRow--right{
     opacity: 1;
 }
+
+
+@media (max-width:760px) {
+
+    .artista--nome{
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .albumRow--left, .albumRow--right{
+        opacity: 1;
+    }
+
+    .albumRow--item--name{
+        opacity: 0.6;
+    }
+
+}

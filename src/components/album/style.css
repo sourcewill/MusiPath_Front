@@ -98,6 +98,52 @@
 
 .albuns-recomendados{
     position: relative;
-    top: -100px;
+    top: -70px;
     user-select: none;
+}
+
+
+@media (max-width:760px) {
+
+    .album{
+        position: relative;
+        top: -70px;
+        user-select: none;
+    }
+    
+    .album-nome{
+        display: flex;
+        justify-content: right;
+        padding-left: 30px;
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .album--tags{
+        padding-left: 30px;
+    }
+
+    .album-row{
+        padding-left: 30px;
+    }
+
+}
+
+
+@media (max-width:500px) {
+
+    .album--tags{
+        padding-left: 30px;
+    }
+    
+    .album--tag{
+        font-size: 0px;
+        opacity: 0;
+    }
+
+    .album--tag:hover{
+        opacity: 0;
+    }
+
 }
