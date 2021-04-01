@@ -53,7 +53,7 @@ class App extends React.Component {
     }
 
     onSearchSubmit = async text => {
-        console.log(text)
+        //console.log(text)
 
         this.setState({ loading: true })
 
@@ -62,7 +62,7 @@ class App extends React.Component {
         try {
             responseArtista = await APIService.getArtistaPorNome(text)
         } catch (e) {
-            console.log('Erro de conexão com o servidor.')
+            //console.log('Erro de conexão com o servidor.')
             this.setState({
                 loading: false,
                 alertaFalhaServidor: true
@@ -77,7 +77,7 @@ class App extends React.Component {
         }
 
         if (responseArtista.status === 204) {
-            console.log('artista nao encontrado')
+            //console.log('artista nao encontrado')
             this.setState({
                 loading: false,
                 alertaArtistaNaoEncontrado: true
@@ -110,7 +110,7 @@ class App extends React.Component {
         this.setState({ loading: true })
         const responseGrafo = await APIService.getJsonGrafoArtista('mbid', mbid, 3, 3)
         const response = await APIService.getArtistaPorMbid(mbid)
-        console.log(response.data)
+        //console.log(response.data)
         this.setState(
             {
                 loading: false,
@@ -121,7 +121,7 @@ class App extends React.Component {
     }
 
     onClickAlbum = async jsonAlbum => {
-        console.log(jsonAlbum)
+        //console.log(jsonAlbum)
         const response = await APIService.getArtistaPorAlbumMbid(jsonAlbum.mbid)
         this.setState(
             {
@@ -132,7 +132,7 @@ class App extends React.Component {
     }
 
     onClickMusica = async musica => {
-        console.log(musica)
+        //console.log(musica)
         this.setState(
             {
                 jsonMusica: musica,

@@ -11,12 +11,12 @@ class ArtistaService {
     }
 
     getArtistaPorNome(nome){
-        console.log('Busca por nome: ' + nome);
+        //console.log('Busca por nome: ' + nome);
         return axios.get(URL_API + 'artistas/buscarpornome/' + nome);
     }
 
     getArtistaPorMbid(mbid){
-        console.log('Busca por mbid: ' + mbid);
+        //console.log('Busca por mbid: ' + mbid);
         return axios.get(URL_API + 'artistas/buscarpormbid/' + mbid);
     }
 
@@ -25,7 +25,7 @@ class ArtistaService {
     }
 
     getAlbumPorMbid(mbid){
-        console.log('Busca por mbid: ' + mbid);
+        //console.log('Busca por mbid: ' + mbid);
         return axios.get(URL_API + 'albuns/buscarpormbid/' + mbid);
     }
 
