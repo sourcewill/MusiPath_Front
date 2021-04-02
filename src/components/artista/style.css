@@ -159,7 +159,6 @@
     }
 
     .albumRow--left, .albumRow--right{
-        z-index: 99;
         opacity: 1;
     }
 
