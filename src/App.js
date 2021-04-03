@@ -21,7 +21,6 @@ class App extends React.Component {
         this.onSearchSubmit = this.onSearchSubmit.bind(this)
 
         this.state = {
-            jsonGrafo: null,
             jsonArtista: null,
             jsonAlbum: null,
             jsonArtistaDoAlbum: null,
@@ -92,11 +91,8 @@ class App extends React.Component {
             return;
         }
 
-        const responseGrafo = await APIService.getJsonGrafoArtista('nome', text, 3, 3)
-
         this.setState(
             {
-                jsonGrafo: responseGrafo.data,
                 jsonArtista: responseArtista.data,
                 welcome: false,
                 loading: false,
@@ -108,13 +104,11 @@ class App extends React.Component {
     onClickArtist = async mbid => {
 
         this.setState({ loading: true })
-        const responseGrafo = await APIService.getJsonGrafoArtista('mbid', mbid, 3, 3)
         const response = await APIService.getArtistaPorMbid(mbid)
         //console.log(response.data)
         this.setState(
             {
                 loading: false,
-                jsonGrafo: responseGrafo.data,
                 jsonArtista: response.data,
             }
         )
@@ -152,7 +146,7 @@ class App extends React.Component {
                             <Busca onSubmit={this.onSearchSubmit} />
                             {(this.state.welcome) && <Welcome />}
                             {(this.state.loading) && <Carregando />}
-                            {(this.state.jsonGrafo !== null) && <VisReact jsonGrafo={this.state.jsonGrafo} onClickArtist={this.onClickArtist} />}
+                            {(this.state.jsonArtista !== null) && <VisReact jsonArtista={this.state.jsonArtista} onClickArtist={this.onClickArtist} />}
                         </div>
                     </div>
                     {(this.state.jsonArtista !== null) && <Artista jsonArtista={this.state.jsonArtista} onClickAlbum={this.onClickAlbum} />}

@@ -85,7 +85,7 @@ export default class VisReact extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.jsonGrafo.listaDeNos[0].id !== this.props.jsonGrafo.listaDeNos[0].id) {
+		if (prevProps.jsonArtista.grafo.listaDeNos[0].id !== this.props.jsonArtista.grafo.listaDeNos[0].id) {
 			this.updateGraph()
 		}
 	}
@@ -105,16 +105,16 @@ export default class VisReact extends React.Component {
 
 	getNosJson() {
 		let nos = []
-		let numNos = this.props.jsonGrafo.listaDeNos.length
+		let numNos = this.props.jsonArtista.grafo.listaDeNos.length
 		for (let i = 0; i < numNos; i++) {
 			nos.push({
-				id: this.props.jsonGrafo.listaDeNos[i].id,
-				label: this.props.jsonGrafo.listaDeNos[i].nome,
-				color: this.getCorByNivel(this.props.jsonGrafo.listaDeNos[i].nivel),
-				font: { color: this.getCorTextoByNivel(this.props.jsonGrafo.listaDeNos[i].nivel) },
+				id: this.props.jsonArtista.grafo.listaDeNos[i].id,
+				label: this.props.jsonArtista.grafo.listaDeNos[i].nome,
+				color: this.getCorByNivel(this.props.jsonArtista.grafo.listaDeNos[i].nivel),
+				font: { color: this.getCorTextoByNivel(this.props.jsonArtista.grafo.listaDeNos[i].nivel) },
 				shadow: { color: "#151517" },
 				shape: "box", // circularImage / box
-				image: this.props.jsonGrafo.listaDeNos[i].urlImagem
+				image: this.props.jsonArtista.grafo.listaDeNos[i].urlImagem
 			})
 		}
 		return nos
@@ -147,11 +147,11 @@ export default class VisReact extends React.Component {
 
 	getArestasJson() {
 		let arestas = []
-		let numArestas = this.props.jsonGrafo.listaDeArestas.length
+		let numArestas = this.props.jsonArtista.grafo.listaDeArestas.length
 		for (let i = 0; i < numArestas; i++) {
 			arestas.push({
-				from: this.props.jsonGrafo.listaDeArestas[i].de,
-				to: this.props.jsonGrafo.listaDeArestas[i].para,
+				from: this.props.jsonArtista.grafo.listaDeArestas[i].de,
+				to: this.props.jsonArtista.grafo.listaDeArestas[i].para,
 				arrows: ""
 			})
 		}
