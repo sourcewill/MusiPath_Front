@@ -1,5 +1,5 @@
 .artista{
-    height: 50vh;
+    height: 45vh;
     user-select: none;
 }
 
@@ -166,4 +166,32 @@
         opacity: 0.6;
     }
 
+}
+
+@media (max-height:900px){
+    .artista{
+        height: 50vh;
+        user-select: none;
+    }
+}
+
+@media (max-height:800px){
+    .artista{
+        height: 55vh;
+        user-select: none;
+    }
+}
+
+@media (max-height:700px){
+    .artista{
+        height: 60vh;
+        user-select: none;
+    }
+}
+
+@media (max-height:600px){
+    .artista{
+        height: 65vh;
+        user-select: none;
+    }
 }
