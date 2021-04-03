@@ -113,7 +113,7 @@ export default class Album extends React.Component {
                                     </>
                                 }
 
-                                <div className="albumRow--listarea">
+                                <div className="albumRow--listarea--recomendations">
                                     <div className="albumRow--list" style={{
                                         marginLeft: this.needArrows() ? this.state.scrollX : 0,
                                         width: 99999

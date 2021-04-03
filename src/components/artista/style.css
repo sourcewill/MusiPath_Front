@@ -61,6 +61,7 @@
 .albumRow--listarea{
     overflow-x: hidden;
     padding-left: 30px;
+    padding-bottom: 50px;
 }
 
 .albumRow--list{
@@ -170,28 +171,24 @@
 
 @media (max-height:900px){
     .artista{
-        height: 50vh;
-        user-select: none;
+        height: 51vh;
     }
 }
 
 @media (max-height:800px){
     .artista{
-        height: 55vh;
-        user-select: none;
+        height: 56vh;
     }
 }
 
 @media (max-height:700px){
     .artista{
-        height: 60vh;
-        user-select: none;
+        height: 61vh;
     }
 }
 
 @media (max-height:600px){
     .artista{
-        height: 65vh;
-        user-select: none;
+        height: 70vh;
     }
 }

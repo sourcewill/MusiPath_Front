@@ -58,6 +58,12 @@
     background-color: #0EBDE8;
 }
 
+.albumRow--listarea--recomendations{
+    overflow-x: hidden;
+    padding-left: 30px;
+    padding-bottom: 10px;
+}
+
 .album-row{
     width: 100%;
     display: flex;
