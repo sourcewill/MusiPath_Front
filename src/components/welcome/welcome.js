@@ -8,8 +8,9 @@ class Welcome extends React.Component {
         return (
             <div className='bemvindo'>
                 <h2>Bem-vindo(a)!</h2>
-                <p>O Musipath é um sistema em desenvolvimento que oferece a interação com uma rede de artistas e músicas, criada automaticamente! Explore álbuns e músicas que correspondem ao seu estilo.</p>
-                <p><b>Comece agora mesmo seu trajeto musical! Inicie buscando pelo nome de um artista como, por exemplo, "Coldplay" e conheça outros artistas similares.</b></p>
+                <p>O Musipath é um sistema em desenvolvimento que oferece a interação com uma rede musical, criada automaticamente. Explore artistas, álbuns e músicas que correspondem ao seu estilo musical.</p>
+                <p>Inicie buscando pelo nome de um artista como, por exemplo, "Coldplay" e conheça outros artistas similares.</p>
+                <p><b>Comece agora mesmo seu trajeto pela música, desejamos uma ótima experiência!</b></p>
             </div>
         )
     }
