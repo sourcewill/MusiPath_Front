@@ -24,6 +24,16 @@ class Artista extends React.Component {
         /*this.refArtista.scrollIntoView({ behavior: "smooth" })*/
     }
 
+    componentDidUpdate(prevProps) {
+		if (prevProps.jsonArtista.mbid !== this.props.jsonArtista.mbid) {
+			this.setState(
+                {
+                    scrollX: 0
+                }
+            )
+		}
+	}
+
     leftArrowClicked() {
         let x = this.state.scrollX + Math.round(window.innerWidth / 2);
         if (x > 0) {

@@ -1,5 +1,5 @@
 .artista{
-    height: 45vh;
+    height: 430px;
     user-select: none;
 }
 
@@ -109,7 +109,7 @@
     width: 40px;
     height: 150px;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: 99;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,6 +154,11 @@
 
 @media (max-width:760px) {
 
+    .artista{
+        height: 430px;
+        user-select: none;
+    }
+
     .artista--nome{
         font-size: 35px;
         font-weight: bold;
@@ -169,26 +174,3 @@
 
 }
 
-@media (max-height:900px){
-    .artista{
-        height: 51vh;
-    }
-}
-
-@media (max-height:800px){
-    .artista{
-        height: 56vh;
-    }
-}
-
-@media (max-height:700px){
-    .artista{
-        height: 61vh;
-    }
-}
-
-@media (max-height:600px){
-    .artista{
-        height: 70vh;
-    }
-}

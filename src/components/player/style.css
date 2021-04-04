@@ -1,4 +1,5 @@
 .player{
+    z-index: 100;
     user-select: none;
     position: fixed;
     left: 0;
@@ -13,15 +14,12 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-radius: 0px 0px 0 0;
-    z-index: 998;
     padding: 0 30px;
 }
 
 .music--tempo{
     transform: translate(-2px, 5px);
     width: 100%;
-    z-index: 999;
 }
 
 .play-pause{

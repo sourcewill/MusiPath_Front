@@ -22,7 +22,6 @@ export default class Album extends React.Component {
 
         this.state = {
             idMusicaAtual: null,
-            mbidAlbumAtual: null,
             scrollX: 0,
         }
     }
@@ -31,12 +30,13 @@ export default class Album extends React.Component {
         this.refAlbum.scrollIntoView({ behavior: "smooth" })
     }
 
-    componentDidUpdate(){
-        if(this.state.mbidAlbumAtual !== this.props.jsonAlbum.mbid){
-            this.refAlbum.scrollIntoView({ behavior: "smooth" })
+    componentDidUpdate(prevProps){
+
+        if (prevProps.jsonAlbum.mbid !== this.props.jsonAlbum.mbid) {
+            this.refAlbum.scrollIntoView({ behavior: "smooth" });
             this.setState(
                 {
-                    mbidAlbumAtual: this.props.jsonAlbum.mbid
+                    scrollX: 0
                 }
             )
         }
