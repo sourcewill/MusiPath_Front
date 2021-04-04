@@ -49,3 +49,17 @@ opacity: 1;
 transform: scale(1) translateY(0);
 transition: opacity 0.2s ease, transform 0.5s ease;
 }
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+*:active, *:focus {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none;
+}
