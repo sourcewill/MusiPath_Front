@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //const URL_API = 'http://192.168.15.8:8080/api/';
-const URL_API = 'https://f5e73f167aac.ngrok.io/api/';
+const URL_API = 'https://f578c31ce181.ngrok.io';
 //const URL_API = 'https://musipath-api.herokuapp.com/api/';
 
 class ArtistaService {
