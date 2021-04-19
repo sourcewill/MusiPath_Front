@@ -134,12 +134,20 @@ export default class Album extends React.Component {
                         <div className='album-nome'>
                             {this.props.jsonAlbum.nome}
                         </div>
+
+                        <div className='album-artista' onClick={() => (this.props.onClickArtist(this.props.jsonArtista.mbid))}>
+                                    <img className='album-artista-foto' src={this.props.jsonArtista.urlImagem} alt={this.props.jsonArtista.nome}></img>
+                                <div className='album-artista-nome'>
+                                    {this.props.jsonArtista.nome}
+                                </div>
+                        </div>
+
                         <div className="album--tags">
-                            <div className='album-nome-artista' onClick={() => (this.props.onClickArtist(this.props.jsonArtista.mbid))}>Artista: {this.props.jsonArtista.nome}</div>
                             {this.props.jsonAlbum.tags.map((tag) => (
                                 <div className="album--tag" key={tag}>{tag}</div>
                             ))}
                         </div>
+                        
                         {this.props.jsonAlbum.musicas.map((musica) => (
                             <div className='album-row' key={musica.mbid} id={musica.mbid} onClick={() => (this.clickMusica(musica))}>
                                 {(musica.mbid === this.state.idMusicaAtual)

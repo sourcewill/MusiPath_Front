@@ -42,6 +42,30 @@
     opacity: 1;
 }
 
+.album-artista{
+    cursor: pointer;
+    padding-left: 10%;
+    display: flex;
+}
+
+.album-artista:hover .album-artista-foto{
+    transform: scale(1);
+}
+
+.album-artista-foto{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transform: scale(0.9);
+    transition: all ease 0.2s;
+}
+
+.album-artista-nome{
+    padding-left: 5px;
+    padding-top: 15px;
+    font-size: 15px;
+}
+
 .album-nome-artista{
     font-size: 15px;
     display: inline-block;
@@ -130,6 +154,10 @@
         padding-left: 30px;
     }
 
+    .album-artista{
+        padding-left: 30px;
+    }
+
     .album-row{
         padding-left: 30px;
     }
@@ -138,10 +166,6 @@
 
 
 @media (max-width:500px) {
-
-    .album--tags{
-        padding-left: 30px;
-    }
     
     .album--tag{
         font-size: 0px;
