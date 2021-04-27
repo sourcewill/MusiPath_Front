@@ -14,14 +14,12 @@ export default class Album extends React.Component {
 
         this.refAlbum = React.createRef()
 
-        this.clickMusica = this.clickMusica.bind(this);
         this.leftArrowClicked = this.leftArrowClicked.bind(this)
         this.rightArrowClicked = this.rightArrowClicked.bind(this)
         this.needArrows = this.needArrows.bind(this)
         this.onClickAlbumRecomendado = this.onClickAlbumRecomendado.bind(this)
 
         this.state = {
-            idMusicaAtual: null,
             scrollX: 0,
         }
     }
@@ -40,15 +38,6 @@ export default class Album extends React.Component {
                 }
             )
         }
-    }
-
-    clickMusica(musica) {
-        this.setState(
-            {
-                idMusicaAtual: musica.mbid
-            }
-        )
-        this.props.onClickMusica(musica)
     }
 
     leftArrowClicked() {
@@ -148,9 +137,9 @@ export default class Album extends React.Component {
                             ))}
                         </div>
                         
-                        {this.props.jsonAlbum.musicas.map((musica) => (
-                            <div className='album-row' key={musica.mbid} id={musica.mbid} onClick={() => (this.clickMusica(musica))}>
-                                {(musica.mbid === this.state.idMusicaAtual)
+                        {this.props.jsonAlbum.musicas.map((musica, index) => (
+                            <div className='album-row' key={musica.mbid} id={musica.mbid} onClick={() => (this.props.onClickMusica(index))}>
+                                {(index === this.props.indexMusicaAtual)
                                     ?
                                     <PlayArrowIcon className='icon-music-selected'
                                         style={{

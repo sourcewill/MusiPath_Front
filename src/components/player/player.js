@@ -5,6 +5,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 class Player extends React.Component {
 
@@ -99,6 +100,7 @@ class Player extends React.Component {
 
                 break;
             case 0: //encerrado
+                this.props.nextMusic(); //Auto play next music
                 this.setState(
                     {
                         playing: false
@@ -206,6 +208,10 @@ class Player extends React.Component {
                     <div className='play-pause' onClick={this.playPause}>
                         {(!this.state.playing) && <PlayArrowIcon className="icon--play" style={{ fontSize: '30px' }} />}
                         {(this.state.playing) && <PauseIcon className="icon--pause" style={{ fontSize: '30px' }} />}
+                    </div>
+
+                    <div className='next-music' onClick={this.props.nextMusic}>
+                        <SkipNextIcon className="icon--next" style={{ fontSize: '25px' }} />
                     </div>
 
                     {(this.state.player !== null &&
