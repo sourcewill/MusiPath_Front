@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //const URL_API = 'http://192.168.15.8:8080/api/';
-const URL_API = 'https://1fb6-2804-7f4-5387-9ab-f812-ad3f-d219-c575.ngrok.io/api/';
+const URL_API = 'https://63c4-2804-7f4-548d-247a-8460-2497-9d21-876.ngrok.io/api/';
 
 class ArtistaService {
 
